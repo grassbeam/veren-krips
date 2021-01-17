@@ -12,15 +12,26 @@
     require_once '../utility/db.php';
     require_once '../utility/utility.php';
 
-
-    if (!isset($_POST['context'])) {
-        echo json_encode(createGeneralResponseModel(false, "Invalid Context"));
-    } else {
+    $isContextValid = true;
+    if (isset($_POST['context'])) {
         switch($_POST['context']) {
             case 'login':
-                require_once './login/login.php';
+                require_once './home/login.php';
+                break;
+            case 'logout':
+                require_once './home/logout.php';
+                break;
+
+            default:
+                $isContextValid = false;
                 break;
         }
+    } else {
+        $isContextValid = false;
+    }
+
+    if (!$isContextValid) {
+        echo json_encode(createGeneralResponseModel(false, "Invalid Context"));
     }
 
 

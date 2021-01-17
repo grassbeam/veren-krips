@@ -4,8 +4,6 @@
 
     // Can use db here...
 
-    echo '<h1>Processing...</h1>';
-
     // Do Login
     $isLoginValid = false;
     if(isset($_POST['username']) && isset($_POST['password'])) {
@@ -20,7 +18,8 @@
 
     if ($isLoginValid) {
         $_SESSION['isLogin'] = 1;
-        alertRedirectJS("Welcome!", "../");
+        echo '<h1>Processing...</h1>';
+        redirectJS("../");
     } else {
         alertRedirectJS("Invalid Username or Password!", "../");
     }
