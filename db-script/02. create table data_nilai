@@ -1,0 +1,23 @@
+DROP TABLE IF EXISTS `data_nilai`;
+
+CREATE TABLE `data_nilai` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255),
+  `daerah` varchar(150),
+  `tanggal1` date,
+  `jenis_kelamin` char(5),
+  `status_anak` varchar(50),
+  `nama_smp` varchar(255),
+  `jurusan` varchar(50),
+  `agama` varchar(50),
+  `mapel` varchar(150),
+  `nilai_teori` int DEFAULT NULL,
+  `nilai_praktek` int DEFAULT NULL,
+  `guru` varchar(255),
+  `mapel_lm` varchar(255),
+  `kumpul_nilai_text` date,
+  `terima_rapor_text` date,
+  `ekskul` varchar(200),
+  `prestasi` int DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
