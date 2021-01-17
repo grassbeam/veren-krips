@@ -9,19 +9,19 @@
 
 
     if (isset($_GET['page'])) {
-      $PageView = $_GET['page'];
+      $__PageView = $_GET['page'];
     }
 
     if (!isset($_SESSION['isLogin'])) {
-      $PageView = "login";
+      $__PageView = "login";
     } else {
-      if(!isset($pages)){
-        $pages = 'home';
+      if(!isset($__PageView)){
+        $__PageView = 'home';
       }else{
-        if($pages =='login'){
-          $pages ='home';
+        if($__PageView =='login'){
+          $__PageView ='home';
         }else{
-          $pages = $pages;
+          $__PageView = $__PageView;
         }
       }
     }
@@ -54,7 +54,18 @@
     <?php
       if (isset($_SESSION['isLogin'])) {
         // Do Something about loggedin pages
-        echo base_url();
+        // var_dump($__PageView);
+        switch ($__PageView) {
+          case 'home':
+            require_once './view/pages/home.php';
+            break;
+          case 'data':
+            require_once './view/pages/data.php';
+            break;
+          case 'graph':
+            require_once './view/pages/graph.php';
+            break;
+        }
       } else {
         // give login page
         require_once './view/pages/login.php';
