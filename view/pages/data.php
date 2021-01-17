@@ -12,10 +12,18 @@
                     <tr>
                         <th>Nama</th>
                         <th>Daerah</th>
-                        <th>Tanggal1</th>
                         <th>Jenis Kelamin</th>
                         <th>Status Anak</th>
                         <th>Nama SMP</th>
+                        <th>Jurusan</th>
+                        <th>Agama</th>
+                        <th>Mata Pelajaran</th>
+                        <th>Nilai Teori</th>
+                        <th>Nilai Praktek</th>
+                        <th>Guru</th>
+                        <th>Mapel LM</th>
+                        <th>Ekskul</th>
+                        <th>Prestasi</th>
                     </tr>
                 </thead>
             </table>
