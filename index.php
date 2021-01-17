@@ -37,10 +37,41 @@
     <meta name="description" content="">
     <title>Veren Krips bbb</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Library CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css"
-    <link rel="stylesheet" src="./assets/css/main.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/main.css"/>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <?php
+      if (isset($_SESSION['isLogin'])) {
+        ?>
+      <!-- SCRIPT FOR LOGGEDIN SESSION -->
+      <script src="./assets/js/navbar.js" > </script>
+      <?php 
+        if ($__PageView == 'data') {
+      ?>
+      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
+
+
+      
+      <!-- Custom Script -->
+      <script src="./assets/js/data-nilai-page.js"></script>
+      <?php } ?>
+      <!-- END OF SCRIPT FOR LOGGEDIN SESSION -->
+        <?php
+      }
+    ?>
 
   </head>
   <body>
@@ -76,26 +107,6 @@
     ?>
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-
-    <?php
-      if (isset($_SESSION['isLogin'])) {
-        ?>
-      <!-- SCRIPT FOR LOGGEDIN SESSION -->
-      <script src="./assets/js/navbar.js" > </script>
-      <?php 
-        if ($__PageView == 'data') {
-      ?>
-      <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-      <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-      <script src="./assets/js/data-nilai-table.js"></script>
-      <?php } ?>
-      <!-- END OF SCRIPT FOR LOGGEDIN SESSION -->
-        <?php
-      }
-    ?>
       
   </body>
 </html>

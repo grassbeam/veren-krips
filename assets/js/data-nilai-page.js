@@ -28,4 +28,8 @@ $(document).ready(function() {
             { "data": "prestasi" },
         ]
     } );
+
+
+    $('#formInputDataNilai .input-group.date').datepicker({
+    });
 } );
