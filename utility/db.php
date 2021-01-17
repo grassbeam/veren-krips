@@ -15,13 +15,23 @@
 		protected function sanitize($str) {
 			return $this->conn->real_escape_string($str);
 		}
+
 		protected function error() {
 			return $this->conn->error;
 		}
+
 		protected function check_connection() {
 			if(is_null($this->conn))
-			die('Error. uninitialize database connection');
+				die('Error. uninitialize database connection');
 		}
+
+		protected function close_connection() {
+			if(is_null($this->conn))
+				die('Error. uninitialize database connection');
+			else 
+				$this->conn->close();
+		}
+
 		protected function query($query) {
 			$result = $this->conn->query($query) or die($this->error());
 			return $result;
