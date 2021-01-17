@@ -3,5 +3,5 @@
 ?>
 
       <div class="bg-light p-5 rounded">
-          <h3>Welcome, Admin!</h3>
+          <h3>Welcome, <?php echo ucwords($_SESSION['username']); ?> !</h3>
       </div>

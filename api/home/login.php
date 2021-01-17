@@ -13,6 +13,7 @@
         // Username password validation
         if ($username == 'admin' && $password == admin) {
             $isLoginValid = true;
+            $_SESSION['username'] = $username;
         }
     }
 
