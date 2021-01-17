@@ -1,0 +1,5 @@
+SELECT * FROM master.data_nilai;
+
+SELECT COUNT(1) FROM master.data_nilai;
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Kampretos!23';

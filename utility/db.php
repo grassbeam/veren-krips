@@ -6,9 +6,11 @@
 		
 		function __construct() {
 			$this->conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-			if (mysqli_connect_error()) {
+			if (mysqli_connect_errno()) {
+				die ("Failed to connect to MySQL: " . mysqli_connect_error());
+				$err = $this->conn->connect_error;
 				$this->conn = NULL;
-				die('Error: Failed to connect to database');
+				// die('Error: Failed to connect to database in ' . DBHOST . ' with error:\n' . $err);
 			}
 		}
 		
