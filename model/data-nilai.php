@@ -42,7 +42,22 @@
 
             return $retRess;
 
-        }
+		}
+		
+
+		function getGraphTest() {
+			$query = "
+			SELECT mst.mapel_lm, mst.agama, COALESCE(dt.total,0)AS total
+			FROM (
+			SELECT a.agama, b.mapel_lm
+			FROM (SELECT DISTINCT agama FROM data_nilai) AS a
+			JOIN (SELECT DISTINCT mapel_lm FROM data_nilai) AS b
+			) AS mst
+			LEFT JOIN (SELECT agama, mapel_lm, COUNT(*) AS total FROM data_nilai GROUP BY agama, mapel_lm) AS dt ON dt.agama = mst.agama AND dt.mapel_lm = mst.mapel_lm
+			ORDER BY mst.mapel_lm, mst.agama;
+			";
+			return $this->fetch($query);
+		}
 
 	}
 

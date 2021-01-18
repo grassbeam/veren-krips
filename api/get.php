@@ -31,6 +31,9 @@
             case 'data':
                 require_once './data/data-nilai.php';
                 break;
+            case 'graph1-test':
+                require_once './graph/data-graph-test.php';
+                break;
 
             default:
                 $isContextValid = false;
