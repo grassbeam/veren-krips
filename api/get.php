@@ -34,6 +34,15 @@
             case 'graph1-test':
                 require_once './graph/data-graph-test.php';
                 break;
+            case 'graphone':
+                require_once './graph/data-graph-1.php';
+                break;
+            case 'graphthree':
+                require_once './graph/data-graph-3.php';
+                break;
+            case 'graphfour':
+                    require_once './graph/data-graph-4.php';
+                    break;
 
             default:
                 $isContextValid = false;

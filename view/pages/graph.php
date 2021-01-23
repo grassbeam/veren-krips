@@ -12,6 +12,7 @@
                     require_once './view/components/graph/graph1.php';
                 ?>
             </div>
+            
             <div class="col-6 pr-0 ">
                 <?php 
                     require_once './view/components/graph/graph2.php';
@@ -19,4 +20,21 @@
             </div>
 
         </div>
+
+        <div class="row graph-row">
+            <div class="col-12 p-0">
+                <?php 
+                    require_once './view/components/graph/graph3.php';
+                ?>
+            </div>
+        </div>
+
+        <div class="row graph-row">
+            <div class="col-12 p-0">
+                <?php 
+                    require_once './view/components/graph/graph4.php';
+                ?>
+            </div>
+        </div>
+
     </div>
