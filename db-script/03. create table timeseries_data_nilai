@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS `time_data_nilai`;
+CREATE TABLE `time_data_nilai` (
+  `tanggal` date NOT NULL AUTO_INCREMENT,
+  `hari` varchar(20),
+  `bulan` varchar(20),
+  `tahun` int,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
