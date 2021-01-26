@@ -1,5 +1,16 @@
 <?php 
     if (!defined('BASE')) die('<h1 class="try-hack">Restricted access!</h1>');
+
+    $isParamValid = true;
+    $isPOST = false;
+
+    if (isset($_POST['code']))  {
+        // var_dump($_POST);
+        $isPOST = true;
+
+    }
+
+    
 ?>
         <div class="jumbotron page-header">
             <p class="h1">Data Page</p>  
@@ -9,7 +20,7 @@
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                         <h4>Input Data</h4>
                         </button>
                     </h2>
@@ -17,24 +28,26 @@
 
                 <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                        <form action="#" method="post" id="formInputDataNilai">
+                        <form action="./?page=data" method="post" id="formInputDataNilai">
+
+                            <input type="hidden" value="something" name="code">
 
                             <div class="form-row align-items-center mb-3">
 
                                 <div class="col-4">
                                     <label for="txtNama">Nama</label>
-                                    <input type="text" class="form-control" id="txtNama" name="nama" >
+                                    <input type="text" class="form-control" id="txtNama" name="nama" required>
                                 </div>
 
                                 <div class="col-4">
                                     <label for="txtDaerah">Daerah</label>
-                                    <input type="text" class="form-control" id="txtDaerah" name="daerah" >
+                                    <input type="text" class="form-control" id="txtDaerah" name="daerah" required>
                                 </div>
 
                                 <div class="col-4">
                                     <label for="txtTanggal">Tanggal</label>
                                     <div class="input-group date">
-                                        <input type="text" class="form-control" id="txtTanggal" name="tanggal1" >
+                                        <input type="text" class="form-control" id="txtTanggal" name="tanggal1" required>
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="bi bi-calendar-date"></i></div>
                                         </div>
@@ -48,8 +61,8 @@
 
                                 <div class="col-4">
                                     <label for="txtJenisKelamin">Jenis Kelamin</label>
-                                    <select class="custom-select" id="txtJenisKelamin" name="jeniskelamin" >
-                                        <option selected>Please Select</option>
+                                    <select class="custom-select" id="txtJenisKelamin" name="jeniskelamin" required>
+                                        <option selected disabled value="">Please Select</option>
                                         <option value="L">Laki-Laki</option>
                                         <option value="P">Perempuan</option>
                                     </select>
@@ -57,8 +70,8 @@
 
                                 <div class="col-4">
                                     <label for="txtStatusAnak">Status Anak</label>
-                                    <select class="custom-select" id="txtStatusAnak" name="statusanak" >
-                                        <option selected>Please Select</option>
+                                    <select class="custom-select" id="txtStatusAnak" name="statusanak" required>
+                                        <option selected disabled value="">Please Select</option>
                                         <option value="Kandung">Kandung</option>
                                         <option value="Tiri">Tiri</option>
                                     </select>
@@ -66,7 +79,7 @@
 
                                 <div class="col-4">
                                     <label for="txtNamaSMP">Nama SMP</label>
-                                    <input type="text" class="form-control" id="txtNamaSMP" name="namasmp" >
+                                    <input type="text" class="form-control" id="txtNamaSMP" name="namasmp" required>
                                 </div>
 
                             </div>
@@ -75,8 +88,8 @@
 
                                 <div class="col-4">
                                     <label for="txtJurusan">Jurusan</label>
-                                    <select class="custom-select" id="txtJurusan" name="jurusan" >
-                                        <option selected>Please Select</option>
+                                    <select class="custom-select" id="txtJurusan" name="jurusan" required>
+                                        <option selected disabled value="">Please Select</option>
                                         <option value="IPA">IPA</option>
                                         <option value="IPS">IPS</option>
                                     </select>
@@ -85,8 +98,8 @@
 
                                 <div class="col-4">
                                     <label for="txtAgama">Agama</label>
-                                    <select class="custom-select" id="txtAgama" name="agama" >
-                                        <option selected>Please Select</option>
+                                    <select class="custom-select" id="txtAgama" name="agama" required>
+                                        <option selected disabled value="">Please Select</option>
                                         <option value="Islam">Islam</option>
                                         <option value="Katolik">Katolik</option>
                                         <option value="Protestan">Protestan</option>
@@ -98,7 +111,7 @@
 
                                 <div class="col-4">
                                     <label for="txtMapel">Mata Pelajaran</label>
-                                    <input type="text" class="form-control" id="txtMapel" name="mapel" >
+                                    <input type="text" class="form-control" id="txtMapel" name="mapel" required>
                                 </div>
 
                             </div>
@@ -107,17 +120,17 @@
 
                                 <div class="col-4">
                                     <label for="txtNilaiTeori">Nilai Teori</label>
-                                    <input type="number" class="form-control" id="txtNilaiTeori" name="nilaiteori" >
+                                    <input type="number" class="form-control" id="txtNilaiTeori" name="nilaiteori" required>
                                 </div>
 
                                 <div class="col-4">
                                     <label for="txtNilaiPraktek">Nilai Praktek</label>
-                                    <input type="number" class="form-control" id="txtNilaiPraktek" name="nilaipraktek" >
+                                    <input type="number" class="form-control" id="txtNilaiPraktek" name="nilaipraktek" required>
                                 </div>
 
                                 <div class="col-4">
                                     <label for="txtNamaGuru">Nama Guru</label>
-                                    <input type="text" class="form-control" id="txtNamaGuru" name="namaguru" >
+                                    <input type="text" class="form-control" id="txtNamaGuru" name="namaguru" required>
                                 </div>
 
                             </div>
@@ -126,13 +139,13 @@
 
                                 <div class="col-4">
                                     <label for="txtMapelLM">Mapel LM</label>
-                                    <input type="text" class="form-control" id="txtMapelLM" name="mapellm" >
+                                    <input type="text" class="form-control" id="txtMapelLM" name="mapellm" required>
                                 </div>
 
                                 <div class="col-4">
                                     <label for="txtKumpulNilai">Kumpul Nilai</label>
                                     <div class="input-group date">
-                                        <input type="text" class="form-control" id="txtKumpulNilai" name="kumpulnilai" >
+                                        <input type="text" class="form-control" id="txtKumpulNilai" name="kumpulnilai" required>
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="bi bi-calendar-date"></i></div>
                                         </div>
@@ -142,7 +155,7 @@
                                 <div class="col-4">
                                     <label for="txtTerimaRapor">Terima Rapor</label>
                                     <div class="input-group date">
-                                        <input type="text" class="form-control" id="txtTerimaRapor" name="terimarapor" >
+                                        <input type="text" class="form-control" id="txtTerimaRapor" name="terimarapor" required>
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="bi bi-calendar-date"></i></div>
                                         </div>
@@ -155,12 +168,12 @@
 
                                 <div class="col-4">
                                     <label for="txtEkskul">Ekskul</label>
-                                    <input type="text" class="form-control" id="txtEkskul" name="ekskul" >
+                                    <input type="text" class="form-control" id="txtEkskul" name="ekskul" required>
                                 </div>
 
                                 <div class="col-4">
                                     <label for="txtPrestasi">Prestasi</label>
-                                    <input type="text" class="form-control" id="txtPrestasi" name="prestasi" >
+                                    <input type="number" class="form-control" id="txtPrestasi" name="prestasi" required>
                                 </div>
 
                                 <div class="col-4">
