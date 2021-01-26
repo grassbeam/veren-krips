@@ -25,8 +25,19 @@
         return $base_url;
 	}
 	
-	function base_url() {
+	function base_url2() {
 		return core_base_url(TRUE, TRUE);
+	}
+
+	function base_url() {
+        if (isset($_SERVER['HTTP_HOST'])) {
+            $http = isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off' ? 'https' : 'http';
+            $hostname = $_SERVER['HTTP_HOST'];
+			$base_url = sprintf( "%s://%s/%s/", $http, $hostname, CONFIG_ROOT_FOLDER);
+		}
+		else $base_url = 'http://localhost/' . CONFIG_ROOT_FOLDER . '/';
+			
+		return $base_url;
 	}
 
 	function redirect($url, $permanent = false) {
