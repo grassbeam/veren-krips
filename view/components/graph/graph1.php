@@ -5,7 +5,7 @@
 
 <div id="containergraphNum1" class="bg-light p-4 rounded">
     <h5>Graph 1</h5>
-    <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum dapibus arcu eget condimentum.</em></p>
+    <p><em>Kualitas pembelajaran seluruh siswa laki-laki dan perempuan setiap tahun</em></p>
     <div id="loadergraphNum1" class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>

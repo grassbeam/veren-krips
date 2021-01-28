@@ -65,12 +65,12 @@
 
 		function getGraphOne() {
 			$query = "
-			SELECT DISTINCT CONCAT(s.status_anak, ' - ' , a.agama) AS pointy, j.jurusan AS pointx, COALESCE(dt.total,0) AS num
-			FROM data_nilai AS j
-			JOIN (SELECT DISTINCT status_anak FROM data_nilai) AS s
-			JOIN (SELECT DISTINCT agama FROM data_nilai) AS a
-			LEFT JOIN (SELECT jurusan, status_anak, agama, COUNT(*) AS total FROM data_nilai GROUP BY jurusan, status_anak, agama) AS dt ON dt.jurusan = j.jurusan AND s.status_anak = dt.status_anak AND dt.agama = a.agama
-			ORDER BY pointy, j.jurusan";
+			SELECT jk.jenis_kelamin AS pointy, yr.tahun AS pointx, AVG(dt.nilai_teori) AS num
+			FROM (SELECT 'L' AS jenis_kelamin UNION ALL SELECT 'P' AS jenis_kelamin ) AS jk
+			JOIN (SELECT DISTINCT YEAR(kumpul_nilai) AS tahun FROM data_nilai) AS yr ON 1=1
+			LEFT JOIN data_nilai AS dt ON dt.jenis_kelamin = jk.jenis_kelamin AND YEAR(dt.kumpul_nilai) = yr.tahun
+			GROUP BY jk.jenis_kelamin, yr.tahun
+			ORDER BY pointy, pointx;";
 			$result = $this->fetch($query);
 			$this->close_connection();
 			return $result;
