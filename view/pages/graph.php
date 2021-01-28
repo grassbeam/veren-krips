@@ -37,4 +37,12 @@
             </div>
         </div>
 
+        <div class="row graph-row">
+            <div class="col-12 p-0">
+                <?php 
+                    require_once './view/components/graph/graph5.php';
+                ?>
+            </div>
+        </div>
+
     </div>

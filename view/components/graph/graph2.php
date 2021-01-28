@@ -5,7 +5,7 @@
 
 <div id="containergraphNum2" class="bg-light p-4 rounded">
     <h5>Graph 2</h5>
-    <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum dapibus arcu eget condimentum.</em></p>
+    <p><em>Kualitas keterampilan seluruh siswa laki-laki dan perempuan setiap tahun</em></p>
     <div id="loadergraphNum2" class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
@@ -15,7 +15,7 @@
 </div>
 
 <script>
-$.get($('#BASEURL').val() + "api/get.php?context=graph1-test", function(data, status){
+$.get($('#BASEURL').val() + "api/get.php?context=graphtwo", function(data, status){
     const chartData = JSON.parse(data);
     var ctx = document.getElementById('graphNum2');
     $("#loadergraphNum2").removeClass('d-flex').hide();
@@ -27,7 +27,7 @@ $.get($('#BASEURL').val() + "api/get.php?context=graph1-test", function(data, st
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: false
                     }
                 }]
             },

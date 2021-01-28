@@ -69,65 +69,15 @@
 
             return $result;
         }
-
-        function getDataGraphTestOne() {
-            // Defining results...
-            $result["datasets"] = [];
-            $result["labels"] = [];
-
-            $rawResult = $this->DBDATA->getGraphTest();
-            
-            $tmpLabelDataset = "";
-            $tmpData = [];
-            $tmpBackgroundArr = [];
-            $tmpBackgroundColor = "#000";
-            $tmpTotalData = count($rawResult);
-            foreach ($rawResult as $key => $data) {
-                $dtMapel = $data["mapel_lm"];
-                $dtAgama = $data["agama"];
-                $dtTotal = $data["total"];
-
-                if ($tmpLabelDataset != $dtMapel) {
-
-                    if ($key >0) {
-                        // Generate DataSets
-                        $tmpDataSets["label"] = $tmpLabelDataset;
-                        $tmpDataSets["data"] = $tmpData;
-                        $tmpDataSets["backgroundColor"] = $tmpBackgroundArr;
-                        $tmpDataSets["borderWidth"] = 1;
-                        array_push($result["datasets"], $tmpDataSets); 
-                    }
-
-                    $tmpLabelDataset = $dtMapel;
-                    $tmpData = [];
-                    $tmpBackgroundArr = [];
-                    $tmpBackgroundColor = $this->generateRandomColor();
-                }
-
-                if (!in_array($dtAgama, $result["labels"])) {
-                    array_push($result["labels"], $dtAgama);
-                }
-
-                array_push($tmpData, $dtTotal);
-                array_push($tmpBackgroundArr, $tmpBackgroundColor);
-
-
-                if ($key >= $tmpTotalData -1) {
-                    // Generate DataSets
-                    $tmpDataSets["label"] = $tmpLabelDataset;
-                    $tmpDataSets["data"] = $tmpData;
-                    $tmpDataSets["backgroundColor"] = $tmpBackgroundArr;
-                    $tmpDataSets["borderWidth"] = 1;
-                    array_push($result["datasets"], $tmpDataSets); 
-                }
-            }
-
-            return $result;
-
-        }
-
+        
         function getDataGraphOne() {
             $rawResult = $this->DBDATA->getGraphOne();
+            
+            return $this->generateBarDataSets($rawResult);
+        }
+
+        function getDataGraphTwo() {
+            $rawResult = $this->DBDATA->getGraphTwo();
             
             return $this->generateBarDataSets($rawResult);
         }
@@ -140,6 +90,12 @@
 
         function getDataGraphFour() {
             $rawResult = $this->DBDATA->getGraphFour();
+            
+            return $this->generateBarDataSets($rawResult);
+        }
+
+        function getDataGraphFive() {
+            $rawResult = $this->DBDATA->getGraphFive();
             
             return $this->generateBarDataSets($rawResult);
         }

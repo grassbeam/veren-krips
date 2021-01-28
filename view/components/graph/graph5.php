@@ -3,31 +3,35 @@
 ?>
 
 
-<div id="containergraphNum4" class="bg-light p-4 rounded">
-    <h5>Graph 4</h5>
-    <p><em>Rata-rata nilai teori siswa laki-laki dan perempuan di setiap mapel dalam jurusan</em></p>
-    <div id="loadergraphNum4" class="d-flex justify-content-center">
+<div id="containergraphNum5" class="bg-light p-4 rounded">
+    <h5>Graph 5</h5>
+    <p><em>Kualitas pembelajaran siswa berdasarkan guru per mata pelajaran</em></p>
+    <div id="loadergraphNum5" class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-    <canvas id="graphNum4" ></canvas>
+    <canvas id="graphNum5" ></canvas>
 </div>
 
 <script>
-$.get($('#BASEURL').val() + "api/get.php?context=graphfour", function(data, status){
+$.get($('#BASEURL').val() + "api/get.php?context=graphfive", function(data, status){
     const chartData = JSON.parse(data);
-    var ctx = document.getElementById('graphNum4');
-    $("#loadergraphNum4").removeClass('d-flex').hide();
+    var ctx = document.getElementById('graphNum5');
+    $("#loadergraphNum5").removeClass('d-flex').hide();
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: chartData,
         options: {
             // aspectRatio: 1, // to make the chart square shapped
+            legend: {
+                display: true,
+                position: 'right',
+            },
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: false,
+                        beginAtZero: false
                     }
                 }]
             },

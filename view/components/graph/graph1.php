@@ -27,7 +27,7 @@ $.get($('#BASEURL').val() + "api/get.php?context=graphone", function(data, statu
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: false
                     }
                 }]
             },

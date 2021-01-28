@@ -6,7 +6,7 @@
 
     $graphDataController = new GraphDataController($DataNilaiDB);
 
-    $result = $graphDataController->getDataGraphTestOne();
+    $result = $graphDataController->getDataGraphFive();
     echo json_encode($result);
 
 

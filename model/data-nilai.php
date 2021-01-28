@@ -45,27 +45,23 @@
             return $retRess;
 
 		}
-		
 
-		function getGraphTest() {
+		function getGraphOne() {
 			$query = "
-			SELECT mst.mapel_lm, mst.agama, COALESCE(dt.total,0)AS total
-			FROM (
-			SELECT a.agama, b.mapel_lm
-			FROM (SELECT DISTINCT agama FROM data_nilai) AS a
-			JOIN (SELECT DISTINCT mapel_lm FROM data_nilai) AS b
-			) AS mst
-			LEFT JOIN (SELECT agama, mapel_lm, COUNT(*) AS total FROM data_nilai GROUP BY agama, mapel_lm) AS dt ON dt.agama = mst.agama AND dt.mapel_lm = mst.mapel_lm
-			ORDER BY mst.mapel_lm, mst.agama;
-			";
+			SELECT jk.jenis_kelamin AS pointy, yr.tahun AS pointx, AVG(dt.nilai_teori) AS num
+			FROM (SELECT 'L' AS jenis_kelamin UNION ALL SELECT 'P' AS jenis_kelamin ) AS jk
+			JOIN (SELECT DISTINCT YEAR(kumpul_nilai) AS tahun FROM data_nilai) AS yr ON 1=1
+			LEFT JOIN data_nilai AS dt ON dt.jenis_kelamin = jk.jenis_kelamin AND YEAR(dt.kumpul_nilai) = yr.tahun
+			GROUP BY jk.jenis_kelamin, yr.tahun
+			ORDER BY pointy, pointx;";
 			$result = $this->fetch($query);
 			$this->close_connection();
 			return $result;
 		}
 
-		function getGraphOne() {
+		function getGraphTwo() {
 			$query = "
-			SELECT jk.jenis_kelamin AS pointy, yr.tahun AS pointx, AVG(dt.nilai_teori) AS num
+			SELECT jk.jenis_kelamin AS pointy, yr.tahun AS pointx, AVG(dt.nilai_praktek) AS num
 			FROM (SELECT 'L' AS jenis_kelamin UNION ALL SELECT 'P' AS jenis_kelamin ) AS jk
 			JOIN (SELECT DISTINCT YEAR(kumpul_nilai) AS tahun FROM data_nilai) AS yr ON 1=1
 			LEFT JOIN data_nilai AS dt ON dt.jenis_kelamin = jk.jenis_kelamin AND YEAR(dt.kumpul_nilai) = yr.tahun
@@ -94,12 +90,25 @@
 
 		function getGraphFour() {
 			$query = "
-			SELECT CONCAT(jk.jenis_kelamin, ' - ', jr.jurusan) AS pointy, mp.mapel AS pointx, COALESCE(dt.num, 0) AS num
+			SELECT CONCAT(jk.jenis_kelamin, ' - ', jr.jurusan) AS pointy, mp.mapel AS pointx, COALESCE(dt.num, '') AS num
 			FROM (SELECT 'L' AS jenis_kelamin UNION ALL SELECT 'P' AS jenis_kelamin ) AS jk
 			JOIN (SELECT DISTINCT jurusan FROM data_nilai) AS jr ON 1=1
 			JOIN (SELECT DISTINCT mapel FROM data_nilai) AS mp ON 1=1
 			LEFT JOIN (SELECT jenis_kelamin, jurusan, mapel, AVG(nilai_teori) num FROM data_nilai GROUP BY jenis_kelamin, jurusan, mapel) AS dt 
 				ON dt.jenis_kelamin = jk.jenis_kelamin AND dt.jurusan = jr.jurusan AND dt.mapel = mp.mapel
+			ORDER BY pointy, pointx";
+			$result = $this->fetch($query);
+			$this->close_connection();
+			return $result;
+		}
+
+		function getGraphFive() {
+			$query = "
+			SELECT g.guru AS pointy, mp.mapel AS pointx, COALESCE(dt.nilai_praktek, 0) AS num
+			FROM (SELECT DISTINCT guru FROM data_nilai) AS g
+			JOIN (SELECT DISTINCT mapel FROM data_nilai) AS mp ON 1=1
+			LEFT JOIN data_nilai AS dt 
+				ON dt.guru = g.guru AND dt.mapel = mp.mapel
 			ORDER BY pointy, pointx";
 			$result = $this->fetch($query);
 			$this->close_connection();
