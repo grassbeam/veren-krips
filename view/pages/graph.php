@@ -1,5 +1,21 @@
 <?php 
     if (!defined('BASE')) die('<h1 class="try-hack">Restricted access!</h1>');
+    
+    require_once './utility/config.php';
+    require_once './utility/db.php';
+    require_once './utility/utility.php';
+    require_once './model/data-master.php';
+
+    $MasterDataDB = new DB_MasterData();
+
+
+    require_once './controller/data-master-controller.php';
+
+    $masterDataController = new DataMasterController($MasterDataDB);
+
+    $MasterArr = $masterDataController->getAllMasterData([$masterDataController->INDEX_DATA_GURU]);
+    $DATA_GURU = $MasterArr[$masterDataController->INDEX_DATA_GURU];
+
 ?>
     <div class="jumbotron page-header">
         <p class="h1">Graph Page</p>  
@@ -45,4 +61,20 @@
             </div>
         </div>
 
+        <div class="row graph-row">
+            <div class="col-12 p-0">
+                <?php 
+                    require_once './view/components/graph/graph6.php';
+                ?>
+            </div>
+        </div>
+
     </div>
+
+
+    <script>
+        // $('.graph-filter-select2').select2();
+    // $(document).ready(function() {
+
+    // } );
+    </script>

@@ -15,24 +15,29 @@
 </div>
 
 <script>
-$.get($('#BASEURL').val() + "api/get.php?context=graphfour", function(data, status){
-    const chartData = JSON.parse(data);
-    var ctx = document.getElementById('graphNum4');
-    $("#loadergraphNum4").removeClass('d-flex').hide();
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: chartData,
-        options: {
-            // aspectRatio: 1, // to make the chart square shapped
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: false,
-                    }
-                }]
-            },
-        }
+$(document).ready(function() {
+
+    $.get($('#BASEURL').val() + "api/get.php?context=graphfour", function(data, status){
+        const chartData = JSON.parse(data);
+        var ctx = document.getElementById('graphNum4');
+        $("#loadergraphNum4").removeClass('d-flex').hide();
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                // aspectRatio: 1, // to make the chart square shapped
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false,
+                        }
+                    }]
+                },
+            }
+        });
     });
+    
 });
+
 
 </script>

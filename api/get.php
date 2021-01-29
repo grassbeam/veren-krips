@@ -46,6 +46,10 @@
             case 'graphfive':
                     require_once './graph/data-graph-5.php';
                     break;
+            case 'graphsix':
+                require_once './graph/data-graph-6.php';
+                break;
+
 
             default:
                 $isContextValid = false;

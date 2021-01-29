@@ -115,6 +115,35 @@
 			return $result;
 		}
 
+		function getGraphSix($filterGuru) {
+			$filterGuruCondition = '';
+			$countFilterGuru = count($filterGuru);
+
+			if ( $countFilterGuru > 0) {
+				$filterGuruCondition = $filterGuruCondition . "HAVING pointy IN (";
+				$tmpcount = 0;
+				foreach ($filterGuru as $gurutext) {
+					$filterGuruCondition = $filterGuruCondition . "'" . $gurutext . "'" . ($tmpcount != $countFilterGuru-1 ? ", ":"");
+					$tmpcount++;
+				}
+				$filterGuruCondition = $filterGuruCondition . ")";
+			}
+			
+			$query = "
+			SELECT g.guru AS pointy, mp.tahun AS pointx, AVG(dt.nilai_teori) AS num
+			FROM (SELECT DISTINCT guru FROM data_nilai) AS g
+			JOIN (SELECT DISTINCT YEAR(kumpul_nilai) AS tahun FROM data_nilai) AS mp ON 1=1
+			LEFT JOIN data_nilai AS dt 
+				ON dt.guru = g.guru AND YEAR(dt.kumpul_nilai) = mp.tahun
+			GROUP BY pointy, pointx
+			" . $filterGuruCondition . "
+			ORDER BY pointy, pointx;  ";
+			
+			$result = $this->fetch($query);
+			$this->close_connection();
+			return $result;
+		}
+
 	}
 
 ?>

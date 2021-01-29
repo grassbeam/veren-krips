@@ -69,6 +69,60 @@
 
             return $result;
         }
+
+        private function generateLineDataSets($rawResult) {
+            $result["datasets"] = [];
+            $result["labels"] = [];
+            
+            $tmpLabelDataset = "";
+            $tmpData = [];
+            $tmpBackgroundArr = [];
+            $tmpBackgroundColor = "#000";
+            $tmpTotalData = count($rawResult);
+            foreach ($rawResult as $key => $data) {
+                $dtPointX = $data["pointx"];
+                $dtPointY = $data["pointy"];
+                $dtTotal = $data["num"];
+
+                if ($tmpLabelDataset != $dtPointY) {
+
+                    if ($key >0) {
+                        // Generate DataSets
+                        $tmpDataSets["label"] = $tmpLabelDataset;
+                        $tmpDataSets["data"] = $tmpData;
+                        $tmpDataSets["backgroundColor"] = $tmpBackgroundColor;
+                        $tmpDataSets["borderColor"] = $tmpBackgroundColor;
+                        $tmpDataSets["fill"] = false;
+                        array_push($result["datasets"], $tmpDataSets); 
+                    }
+
+                    $tmpLabelDataset = $dtPointY;
+                    $tmpData = [];
+                    $tmpBackgroundArr = [];
+                    $tmpBackgroundColor = $this->generateRandomColor();
+                }
+
+                if (!in_array($dtPointX, $result["labels"])) {
+                    array_push($result["labels"], $dtPointX);
+                }
+
+                array_push($tmpData, $dtTotal);
+                array_push($tmpBackgroundArr, $tmpBackgroundColor);
+
+
+                if ($key >= $tmpTotalData -1) {
+                    // Generate DataSets
+                    $tmpDataSets["label"] = $tmpLabelDataset;
+                    $tmpDataSets["data"] = $tmpData;
+                    $tmpDataSets["backgroundColor"] = $tmpBackgroundColor;
+                    $tmpDataSets["borderColor"] = $tmpBackgroundColor;
+                    $tmpDataSets["fill"] = false;
+                    array_push($result["datasets"], $tmpDataSets); 
+                }
+            }
+
+            return $result;
+        }
         
         function getDataGraphOne() {
             $rawResult = $this->DBDATA->getGraphOne();
@@ -98,6 +152,12 @@
             $rawResult = $this->DBDATA->getGraphFive();
             
             return $this->generateBarDataSets($rawResult);
+        }
+        
+        function getDataGraphSix($filterGuru) {
+            $rawResult = $this->DBDATA->getGraphSix($filterGuru);
+            
+            return $this->generateLineDataSets($rawResult);
         }
 
     }

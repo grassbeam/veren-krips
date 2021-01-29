@@ -54,7 +54,14 @@
             $retval = array();
             while ($row = mysqli_fetch_array($result)) array_push($retval, $row);
             return $retval;
-        }
+		}
+		
+		protected function fetchOneColumn($query, $columnName) {
+            $result = $this->conn->query($query) or die($this->error());
+            $retval = array();
+            while ($row = mysqli_fetch_array($result)) array_push($retval, $row[$columnName]);
+            return $retval;
+		}
 
 	}
 	

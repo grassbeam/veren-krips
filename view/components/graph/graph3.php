@@ -15,28 +15,32 @@
 </div>
 
 <script>
-$.get($('#BASEURL').val() + "api/get.php?context=graphthree", function(data, status){
-    const chartData = JSON.parse(data);
-    var ctx = document.getElementById('graphNum3');
-    $("#loadergraphNum3").removeClass('d-flex').hide();
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: chartData,
-        options: {
-            // aspectRatio: 1, // to make the chart square shapped
-            legend: {
-                display: true,
-                position: 'right',
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            },
-        }
+$(document).ready(function() {
+
+    $.get($('#BASEURL').val() + "api/get.php?context=graphthree", function(data, status){
+        const chartData = JSON.parse(data);
+        var ctx = document.getElementById('graphNum3');
+        $("#loadergraphNum3").removeClass('d-flex').hide();
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                // aspectRatio: 1, // to make the chart square shapped
+                legend: {
+                    display: true,
+                    position: 'right',
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+            }
+        });
     });
+    
 });
 
 </script>
