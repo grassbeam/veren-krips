@@ -157,7 +157,9 @@
         function getDataGraphSix($filterGuru) {
             $rawResult = $this->DBDATA->getGraphSix($filterGuru);
             
-            return $this->generateLineDataSets($rawResult);
+            
+            return $this->generateBarDataSets($rawResult);
+            // return $this->generateLineDataSets($rawResult);
         }
 
     }

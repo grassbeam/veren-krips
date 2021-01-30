@@ -74,7 +74,7 @@
 
 		function getGraphThree() {
 			$query = "
-			SELECT CONCAT(mst.prestasi, ' - ', mst.jurusan) AS pointy, mst.nama_smp AS pointx, COALESCE(dt.total, 0) num
+			SELECT CONCAT(mst.prestasi, ' - ', mst.jurusan) AS pointy, mst.nama_smp AS pointx, dt.total num
 			FROM (SELECT DISTINCT a.prestasi, b.jurusan, c.nama_smp 
 			FROM data_nilai AS a
 			JOIN (SELECT DISTINCT jurusan FROM data_nilai) AS b
@@ -90,7 +90,7 @@
 
 		function getGraphFour() {
 			$query = "
-			SELECT CONCAT(jk.jenis_kelamin, ' - ', jr.jurusan) AS pointy, mp.mapel AS pointx, COALESCE(dt.num, '') AS num
+			SELECT CONCAT(jk.jenis_kelamin, ' - ', jr.jurusan) AS pointy, mp.mapel AS pointx, dt.num AS num
 			FROM (SELECT 'L' AS jenis_kelamin UNION ALL SELECT 'P' AS jenis_kelamin ) AS jk
 			JOIN (SELECT DISTINCT jurusan FROM data_nilai) AS jr ON 1=1
 			JOIN (SELECT DISTINCT mapel FROM data_nilai) AS mp ON 1=1
@@ -104,10 +104,10 @@
 
 		function getGraphFive() {
 			$query = "
-			SELECT g.guru AS pointy, mp.mapel AS pointx, COALESCE(dt.nilai_praktek, 0) AS num
+			SELECT g.guru AS pointy, mp.mapel AS pointx, dt.num AS num
 			FROM (SELECT DISTINCT guru FROM data_nilai) AS g
-			JOIN (SELECT DISTINCT mapel FROM data_nilai) AS mp ON 1=1
-			LEFT JOIN data_nilai AS dt 
+			JOIN (SELECT DISTINCT mapel FROM data_nilai) AS mp
+			LEFT JOIN (SELECT guru, mapel, AVG(nilai_praktek) num FROM data_nilai GROUP BY guru, mapel) AS dt 
 				ON dt.guru = g.guru AND dt.mapel = mp.mapel
 			ORDER BY pointy, pointx";
 			$result = $this->fetch($query);
