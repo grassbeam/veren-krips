@@ -41,13 +41,22 @@
                 require_once './graph/data-graph-3.php';
                 break;
             case 'graphfour':
-                    require_once './graph/data-graph-4.php';
-                    break;
+                require_once './graph/data-graph-4.php';
+                break;
             case 'graphfive':
-                    require_once './graph/data-graph-5.php';
-                    break;
+                require_once './graph/data-graph-5.php';
+                break;
             case 'graphsix':
                 require_once './graph/data-graph-6.php';
+                break;
+            case 'graphseven':
+                require_once './graph/data-graph-7.php';
+                break;
+            case 'grapheight':
+                require_once './graph/data-graph-8.php';
+                break;
+            case 'graphnine':
+                require_once './graph/data-graph-9.php';
                 break;
 
 

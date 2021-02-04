@@ -144,6 +144,41 @@
 			return $result;
 		}
 
+		function getGraphSeven() {
+			$query = "
+			SELECT  YEAR(kumpul_nilai) AS pointx, jurusan AS pointy, SUM(prestasi) AS num FROM data_nilai
+			GROUP BY jurusan, YEAR(kumpul_nilai)
+			ORDER BY pointy, pointx;";
+			$result = $this->fetch($query);
+			$this->close_connection();
+			return $result;
+		}
+
+		function getGraphEight() {
+			$query = "
+			SELECT j.jurusan AS pointy, e.ekskul AS pointx, dt.total AS num
+			FROM(SELECT DISTINCT jurusan from data_nilai) AS j
+			JOIN(SELECT DISTINCT ekskul from data_nilai) AS e
+			LEFT JOIN(SELECT jurusan, ekskul, COUNT(*) AS total FROM data_nilai GROUP BY jurusan, ekskul) as dt
+			ON dt.jurusan = j.jurusan AND dt.ekskul = e.ekskul
+			ORDER BY pointy, pointx;";
+			$result = $this->fetch($query);
+			$this->close_connection();
+			return $result;
+		}
+
+		function getGraphNine() {
+			$query = "
+			SELECT ag.agama AS pointx, jk.jenis_kelamin AS pointy, dt.num
+			FROM (SELECT DISTINCT agama FROM data_nilai) ag
+			JOIN (SELECT 'L' AS jenis_kelamin UNION SELECT 'P' AS jenis_kelamin) AS jk ON 1=1
+			LEFT JOIN (SELECT agama AS pointx, jenis_kelamin AS pointy, COUNT(*) AS num  FROM data_nilai GROUP BY agama, jenis_kelamin) AS dt ON dt.pointx = ag.agama AND dt.pointy = jk.jenis_kelamin
+			ORDER BY pointy, pointx;";
+			$result = $this->fetch($query);
+			$this->close_connection();
+			return $result;
+		}
+
 	}
 
 ?>

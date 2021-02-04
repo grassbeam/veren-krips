@@ -69,6 +69,30 @@
             </div>
         </div>
 
+        <div class="row graph-row">
+            <div class="col-12 p-0">
+                <?php 
+                    require_once './view/components/graph/graph7.php';
+                ?>
+            </div>
+        </div>
+
+        <div class="row graph-row">
+            <div class="col-12 p-0">
+                <?php 
+                    require_once './view/components/graph/graph8.php';
+                ?>
+            </div>
+        </div>
+
+        <div class="row graph-row">
+            <div class="col-12 p-0">
+                <?php 
+                    require_once './view/components/graph/graph9.php';
+                ?>
+            </div>
+        </div>
+
     </div>
 
 

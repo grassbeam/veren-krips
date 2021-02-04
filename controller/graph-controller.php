@@ -161,6 +161,24 @@
             return $this->generateBarDataSets($rawResult);
             // return $this->generateLineDataSets($rawResult);
         }
+        
+        function getDataGraphSeven() {
+            $rawResult = $this->DBDATA->getGraphSeven();
+            
+            return $this->generateBarDataSets($rawResult);
+        }
+        
+        function getDataGraphEight() {
+            $rawResult = $this->DBDATA->getGraphEight();
+            
+            return $this->generateBarDataSets($rawResult);
+        }
+        
+        function getDataGraphNine() {
+            $rawResult = $this->DBDATA->getGraphNine();
+            
+            return $this->generateBarDataSets($rawResult);
+        }
 
     }
 
