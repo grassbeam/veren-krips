@@ -8,6 +8,40 @@
         // var_dump($_POST);
         $isPOST = true;
 
+        require_once './model/data-nilai.php';
+    
+        $DataNilaiDB = new DB_DataNilai();
+    
+    
+        require_once './controller/data-nilai.php';
+    
+        $dataNilaiController = new DataNilaiController($DataNilaiDB);
+
+        $value = array (
+            "nama" => $_POST["nama"],
+			"daerah" => $_POST["daerah"],
+			"tanggal1" => $_POST["tanggal1"],
+			"jenis_kelamin" => $_POST["jeniskelamin"],
+			"status_anak" => $_POST["statusanak"],
+			"nama_smp" => $_POST["namasmp"],
+			"jurusan" => $_POST["jurusan"],
+			"agama" => $_POST["agama"],
+			"mapel" => $_POST["mapel"],
+			"nilai_teori" => $_POST["nilaiteori"],
+			"nilai_praktek" => $_POST["nilaipraktek"],
+			"guru" => $_POST["namaguru"],
+			"mapel_lm" => $_POST["mapellm"],
+			"kumpul_nilai" => $_POST["kumpulnilai"],
+			"terima_rapor" => $_POST["terimarapor"],
+			"ekskul" => $_POST["ekskul"],
+			"prestasi" => $_POST["prestasi"],
+        );
+
+
+        $resultInsert = $dataNilaiController->insertDataNilai($value);
+
+
+
     }
 
     
@@ -16,6 +50,25 @@
             <p class="h1">Data Page</p>  
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum dapibus arcu eget condimentum. Curabitur sagittis sollicitudin quam non iaculis. In hac habitasse platea dictumst. Praesent tempus ligula ac accumsan viverra. Ut tempus eleifend molestie. Integer quis blandit nunc. Praesent at leo eu sem finibus porta vel nec metus.</p>
         </div>
+        <?php if (isset($resultInsert)) { 
+                if ($resultInsert) {
+        ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Insert Data Error!</strong> Your data is successfully stored.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php } else { ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Insert Data Error!</strong> You should check in on some of those fields below.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php   } 
+             } 
+        ?>
         <div class="accordion mb-4" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">

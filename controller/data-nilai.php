@@ -40,6 +40,30 @@
             return $this->DBDATA->getAllByDataTable($draw, $query);
         }
 
+        function insertDataNilai($data) {
+            $nama = $data['nama'];
+            $daerah = $data['daerah'];
+            $tanggal1 = $data['tanggal1'];
+            $jenis_kelamin = $data['jenis_kelamin'];
+            $status_anak = $data['status_anak'];
+            $nama_smp = $data['nama_smp'];
+            $jurusan = $data['jurusan'];
+            $agama = $data['agama'];
+            $mapel = $data['mapel'];
+            $nilai_teori = $data['nilai_teori'];
+            $nilai_praktek = $data['nilai_praktek'];
+            $guru = $data['guru'];
+            $mapel_lm = $data['mapel_lm'];
+            $kumpul_nilai = $data['kumpul_nilai'];
+            $terima_rapor = $data['terima_rapor'];
+            $ekskul = $data['ekskul'];
+            $prestasi = $data['prestasi'];
+
+            return $this->DBDATA->insertData($nama, $daerah, $tanggal1, $jenis_kelamin, $status_anak, $nama_smp, $jurusan
+            , $agama, $mapel, $nilai_teori, $nilai_praktek, $guru, $mapel_lm, $kumpul_nilai
+            , $terima_rapor, $ekskul, $prestasi);
+        }
+
     }
 
 ?>

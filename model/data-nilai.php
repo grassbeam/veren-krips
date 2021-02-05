@@ -2,6 +2,49 @@
 	if (!defined('BASE')) die('<h1 class="try-hack">Restricted access!</h1>');
 	
 	class DB_DataNilai extends Database {
+
+		function insertData($nama, $daerah, $tanggal1, $jenis_kelamin, $status_anak, $nama_smp, $jurusan
+					, $agama, $mapel, $nilai_teori, $nilai_praktek, $guru, $mapel_lm, $kumpul_nilai
+					, $terima_rapor, $ekskul, $prestasi) {
+			$query = "INSERT INTO `master`.`data_nilai`
+			(`nama`,
+			`daerah`,
+			`tanggal1`,
+			`jenis_kelamin`,
+			`status_anak`,
+			`nama_smp`,
+			`jurusan`,
+			`agama`,
+			`mapel`,
+			`nilai_teori`,
+			`nilai_praktek`,
+			`guru`,
+			`mapel_lm`,
+			`kumpul_nilai`,
+			`terima_rapor`,
+			`ekskul`,
+			`prestasi`) VALUES  
+			('" . $nama . "' ," . 
+			"'" . $daerah . "', " . 
+			"'" . $tanggal1 . "', " . 
+			"'" . $jenis_kelamin . "', " . 
+			"'" . $status_anak . "', " . 
+			"'" . $nama_smp . "', " . 
+			"'" . $jurusan . "', " . 
+			"'" . $agama . "', " . 
+			"'" . $mapel . "', " . 
+			"'" . $nilai_teori . "', " . 
+			"'" . $nilai_praktek . "', " . 
+			"'" . $guru . "', " . 
+			"'" . $mapel_lm . "', " . 
+			"'" . $kumpul_nilai . "', " . 
+			"'" . $terima_rapor . "', " . 
+			"'" . $ekskul . "', " . 
+			"'" . $prestasi . "');";
+			$result = $this->queryddl($query);
+			$this->close_connection();
+			return $result;
+		}
         
 		function getAllByPaging($pageNo = 1, $rowCount = 10){
             $this->check_connection();

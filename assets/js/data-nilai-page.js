@@ -31,5 +31,6 @@ $(document).ready(function() {
 
 
     $('#formInputDataNilai .input-group.date').datepicker({
+        format: "yyyy-mm-dd",
     });
 } );
