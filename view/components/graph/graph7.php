@@ -3,16 +3,29 @@
 ?>
 
 
-<div id="containergraphNum7" class="bg-light p-4 rounded">
-    <h5>Graph 7</h5>
-    <p><em>Perkembangan prestasi siswa per tahun</em></p>
-    <div id="loadergraphNum7" class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+<div class="accordion mb-4" id="accordiongraphNum7">
+    <div class="card">
+        <div class="card-header" id="headinggraphNum7">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsegraphNum7" aria-expanded="false" aria-controls="collapsegraphNum7">
+                    <h6>Perkembangan prestasi siswa per tahun</h6>
+                </button>
+            </h2>
         </div>
+        <div id="collapsegraphNum7" class="collapse " aria-labelledby="headinggraphNum7" data-parent="#accordiongraphNum7">
+            <div class="card-body">
+                <h5>Graph 7</h5>
+                <div id="loadergraphNum7" class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <canvas id="graphNum7" ></canvas>
+            </div>
+         </div>
     </div>
-    <canvas id="graphNum7" ></canvas>
 </div>
+
 
 <script>
 $(document).ready(function() {

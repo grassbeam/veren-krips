@@ -1,18 +1,29 @@
 <?php 
     if (!defined('BASE')) die('<h1 class="try-hack">Restricted access!</h1>');
 ?>
-
-
-<div id="containergraphNum3" class="bg-light p-4 rounded">
-    <h5>Graph 3</h5>
-    <p><em>Prestasi siswa di berbagai jurusan berdasarkan SMP Asal siswa.</em></p>
-    <div id="loadergraphNum3" class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+<div class="accordion mb-4" id="accordiongraphNum3">
+    <div class="card">
+        <div class="card-header" id="headinggraphNum3">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsegraphNum3" aria-expanded="false" aria-controls="collapsegraphNum3">
+                    <h6>Prestasi siswa di berbagai jurusan berdasarkan SMP Asal siswa.</h6>
+                </button>
+            </h2>
         </div>
+        <div id="collapsegraphNum3" class="collapse " aria-labelledby="headinggraphNum3" data-parent="#accordiongraphNum3">
+            <div class="card-body">
+                <h5>Graph 3</h5>
+                <div id="loadergraphNum3" class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <canvas id="graphNum3" ></canvas>
+            </div>
+         </div>
     </div>
-    <canvas id="graphNum3" ></canvas>
 </div>
+
 
 <script>
 $(document).ready(function() {

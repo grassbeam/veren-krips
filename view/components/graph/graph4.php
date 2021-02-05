@@ -3,17 +3,29 @@
 ?>
 
 
-<div id="containergraphNum4" class="bg-light p-4 rounded">
-    <h5>Graph 4</h5>
-    <p><em>Rata-rata nilai teori siswa laki-laki dan perempuan di setiap mapel dalam jurusan</em></p>
-    <div id="loadergraphNum4" class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <canvas id="graphNum4" ></canvas>
-</div>
 
+<div class="accordion mb-4" id="accordiongraphNum4">
+    <div class="card">
+        <div class="card-header" id="headinggraphNum4">
+            <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsegraphNum4" aria-expanded="false" aria-controls="collapsegraphNum4">
+                    <h6>Rata-rata nilai teori siswa laki-laki dan perempuan di setiap mapel dalam jurusan</h6>
+                </button>
+            </h2>
+        </div>
+        <div id="collapsegraphNum4" class="collapse " aria-labelledby="headinggraphNum4" data-parent="#accordiongraphNum4">
+            <div class="card-body">
+                <h5>Graph 4</h5>
+                <div id="loadergraphNum4" class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+                <canvas id="graphNum4" ></canvas>
+            </div>
+         </div>
+    </div>
+</div>
 <script>
 $(document).ready(function() {
 
