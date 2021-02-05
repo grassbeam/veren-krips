@@ -54,7 +54,7 @@
                 if ($resultInsert) {
         ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Insert Data Error!</strong> Your data is successfully stored.
+            <strong>Insert Data Success!</strong> Your data is successfully stored.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
