@@ -58,7 +58,10 @@
             case 'graphnine':
                 require_once './graph/data-graph-9.php';
                 break;
-
+            case 'graphdata':
+                // $type = $_GET['type'];
+                require_once './data/data-graph-nilai.php';
+                break;
 
             default:
                 $isContextValid = false;

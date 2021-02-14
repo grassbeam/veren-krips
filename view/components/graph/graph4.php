@@ -22,6 +22,20 @@
                     </div>
                 </div>
                 <canvas id="graphNum4" ></canvas>
+                
+                <div class="bg-light p-4 rounded">
+                    <!-- <h6>Data Graph 1</h6> -->
+                    <table id="tablegraphNum4" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>PointX</th>
+                                <th>PointY</th>
+                                <th>Num</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                
             </div>
          </div>
     </div>
@@ -48,6 +62,18 @@ $(document).ready(function() {
             }
         });
     });
+
+$('#tablegraphNum4').DataTable( {
+    "scrollX": true,
+    "searching": false,
+    ajax: "api/get.php?context=graphdata&type=graphfour",
+    columns: [
+        { data: 'pointy' },
+        { data: 'pointx' },
+        { data: 'num' },
+    ]
+} );
+
     
 });
 

@@ -180,6 +180,53 @@
             return $this->generateBarDataSets($rawResult);
         }
 
+        function getDataGraph($type) {
+            $result = array("data"=>"");
+            switch($type) {
+                case 'graphone':
+                    $rawResult = $this->DBDATA->getGraphOne();
+                    $result["data"] = $rawResult;
+                    break;
+                case 'graphtwo':
+                    $rawResult = $this->DBDATA->getGraphTwo();
+                    $result["data"] = $rawResult;
+                    break;
+                case 'graphthree':
+                    $rawResult = $this->DBDATA->getGraphThree();
+                    $result["data"] = $rawResult;
+                    break;
+                case 'graphfour':
+                    $rawResult = $this->DBDATA->getGraphFour();
+                    $result["data"] = $rawResult;
+                    break;
+                case 'graphfive':
+                    $rawResult = $this->DBDATA->getGraphFive();
+                    $result["data"] = $rawResult;
+                    break;
+                case 'graphsix':
+                    $filterGuru = [];
+                    $rawResult = $this->DBDATA->getGraphSix($filterGuru);
+                    $result["data"] = $rawResult;
+                    break;
+                case 'graphseven':
+                    $rawResult = $this->DBDATA->getGraphSeven();
+                    $result["data"] = $rawResult;
+                    break;
+                case 'grapheight':
+                    $rawResult = $this->DBDATA->getGraphEight();
+                    $result["data"] = $rawResult;
+                    break;
+                case 'graphnine':
+                    $rawResult = $this->DBDATA->getGraphNine();
+                    $result["data"] = $rawResult;
+                    break;
+                default:
+                    $result = createGeneralResponseModel(false, "Invalid Context");
+                    break;
+            }
+
+            return $result;
+        }
     }
 
 ?>
