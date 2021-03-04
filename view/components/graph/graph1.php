@@ -8,7 +8,7 @@
         <div class="card-header" id="headinggraphNum1">
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsegraphNum1" aria-expanded="false" aria-controls="collapsegraphNum1">
-                    <h6>Kualitas pembelajaran seluruh siswa laki-laki dan perempuan setiap tahun</h6>
+                    <h6 id="title-graphNum1">Kualitas pembelajaran seluruh siswa laki-laki dan perempuan setiap tahun</h6>
                 </button>
             </h2>
         </div>
@@ -67,12 +67,30 @@ $(document).ready(function() {
     $('#tablegraphNum1').DataTable( {
         "scrollX": true,
         "searching": false,
+        "dom": 'Bfrtip',
+        "buttons": [
+            {
+                extend: 'print',
+                title: document.getElementById("title-graphNum1").innerText,
+                customize: function ( win ) {
+                    
+                    // Generate image from Chart
+                    var canvas = document.getElementById("graphNum1");
+
+                    // Insert image after title
+                    $(win.document.body).find('h1')
+                        .after(
+                            '<img src="' + canvas.toDataURL() + '"  />'
+                        );
+                }
+            }
+        ],
         ajax: "api/get.php?context=graphdata&type=graphone",
         columns: [
-            { data: 'pointy' },
             { data: 'pointx' },
+            { data: 'pointy' },
             { data: 'num' },
-        ]
+        ],
     } );
 
 });

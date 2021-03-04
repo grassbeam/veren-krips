@@ -6,7 +6,7 @@
         <div class="card-header" id="headinggraphNum3">
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsegraphNum3" aria-expanded="false" aria-controls="collapsegraphNum3">
-                    <h6>Prestasi siswa di berbagai jurusan berdasarkan SMP Asal siswa.</h6>
+                    <h6 id="title-graphNum3">Prestasi siswa di berbagai jurusan berdasarkan SMP Asal siswa.</h6>
                 </button>
             </h2>
         </div>
@@ -69,6 +69,24 @@ $(document).ready(function() {
 $('#tablegraphNum3').DataTable( {
     "scrollX": true,
     "searching": false,
+    "dom": 'Bfrtip',
+    "buttons": [
+        {
+            extend: 'print',
+            title: document.getElementById("title-graphNum3").innerText,
+            customize: function ( win ) {
+                
+                // Generate image from Chart
+                var canvas = document.getElementById("graphNum3");
+
+                // Insert image after title
+                $(win.document.body).find('h1')
+                    .after(
+                        '<img src="' + canvas.toDataURL() + '"  />'
+                    );
+            }
+        }
+    ],
     ajax: "api/get.php?context=graphdata&type=graphthree",
     columns: [
         { data: 'pointy' },

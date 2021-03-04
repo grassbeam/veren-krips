@@ -8,7 +8,7 @@
         <div class="card-header" id="headinggraphNum7">
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsegraphNum7" aria-expanded="false" aria-controls="collapsegraphNum7">
-                    <h6>Perkembangan prestasi siswa per tahun</h6>
+                    <h6 id="title-graphNum7">Perkembangan prestasi siswa per tahun</h6>
                 </button>
             </h2>
         </div>
@@ -23,7 +23,7 @@
                 <canvas id="graphNum7" ></canvas>
                 
                 <div class="bg-light p-4 rounded">
-                    <!-- <h6>Data Graph 1</h6> -->
+                    <!-- <h6 id="title-graphNum7">Data Graph 1</h6> -->
                     <table id="tablegraphNum7" class="display" style="width:100%">
                         <thead>
                             <tr>
@@ -71,10 +71,28 @@ $(document).ready(function() {
 $('#tablegraphNum7').DataTable( {
     "scrollX": true,
     "searching": false,
+    "dom": 'Bfrtip',
+    "buttons": [
+        {
+            extend: 'print',
+            title: document.getElementById("title-graphNum7").innerText,
+            customize: function ( win ) {
+                
+                // Generate image from Chart
+                var canvas = document.getElementById("graphNum7");
+
+                // Insert image after title
+                $(win.document.body).find('h1')
+                    .after(
+                        '<img src="' + canvas.toDataURL() + '"  />'
+                    );
+            }
+        }
+    ],
     ajax: "api/get.php?context=graphdata&type=graphseven",
     columns: [
-        { data: 'pointy' },
         { data: 'pointx' },
+        { data: 'pointy' },
         { data: 'num' },
     ]
 } );
